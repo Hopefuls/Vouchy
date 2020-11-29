@@ -1,13 +1,18 @@
 package me.hopedev.vouchy;
 
 
+import me.hopedev.topggwebhooks.Webhook;
+import me.hopedev.topggwebhooks.WebhookBuilder;
 import me.hopedev.vouchy.commands.CommandHandler;
 import me.hopedev.vouchy.utils.DatabaseStorage;
+import me.hopedev.vouchy.utils.WebhookHandler;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.intent.Intent;
 import org.javacord.api.entity.permission.Permissions;
 import org.javacord.api.entity.user.User;
+
+import java.io.IOException;
 
 public class Main {
 
@@ -20,7 +25,12 @@ public class Main {
     api = new DiscordApiBuilder().setToken(Secrets.getToken()).setAllIntentsExcept(Intent.GUILD_PRESENCES).login().join();
     System.out.println(api.createBotInvite(Permissions.fromBitmask(8)));
 
-
+        Webhook webhook = new WebhookBuilder(new WebhookHandler()).setAuthorization(Secrets.getWebhookAuth()).build();
+        try {
+            webhook.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Load CommandHandler
         api.addMessageCreateListener(new CommandHandler());
 
