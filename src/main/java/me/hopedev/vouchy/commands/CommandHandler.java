@@ -40,6 +40,8 @@ public class CommandHandler implements MessageCreateListener {
             return;
         }
             // System.out.println(commandMessage.getArg(1));
+
+        // Added for debugging purposes, will be removed after approval
         System.out.println(commandMessage.getFullString());
         Message message = commandMessage.getMessage();
             if (commandMessage.getArg(0).equalsIgnoreCase("help")) {
