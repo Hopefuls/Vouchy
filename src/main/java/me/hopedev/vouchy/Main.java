@@ -25,7 +25,7 @@ public class Main {
     api = new DiscordApiBuilder().setToken(Secrets.getToken()).setAllIntentsExcept(Intent.GUILD_PRESENCES).login().join();
     System.out.println(api.createBotInvite(Permissions.fromBitmask(8)));
 
-        Webhook webhook = new WebhookBuilder(new WebhookHandler()).setAuthorization(Secrets.getWebhookAuth()).build();
+        Webhook webhook = new WebhookBuilder(new WebhookHandler()).setAuthorization(Secrets.getWebhookAuth()).setPort(5050).build();
         try {
             webhook.start();
         } catch (IOException e) {
