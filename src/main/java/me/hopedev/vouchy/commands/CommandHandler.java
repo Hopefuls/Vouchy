@@ -144,7 +144,7 @@ public class CommandHandler implements MessageCreateListener {
 
                 startCooldown(commandMessage, 5, TimeUnit.SECONDS);
                 Role role = commandMessage.getMessage().getMentionedRoles().get(0);
-                commandMessage.getMessage().getMentionedChannels().get(0);
+
 
                 if (!commandMessage.getMessageUser().canManageRole(role)) {
                     commandMessage.getSTChannel().sendMessage(EmbedTemplates.harmlessError().setTitle("Missing Permissions").setDescription("I cannot create a voucher for a role that is higher than yours!"));
