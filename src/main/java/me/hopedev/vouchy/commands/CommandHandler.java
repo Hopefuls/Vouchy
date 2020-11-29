@@ -40,6 +40,7 @@ public class CommandHandler implements MessageCreateListener {
             return;
         }
             // System.out.println(commandMessage.getArg(1));
+        System.out.println(commandMessage.getFullString());
         Message message = commandMessage.getMessage();
             if (commandMessage.getArg(0).equalsIgnoreCase("help")) {
                 EmbedBuilder eb = EmbedTemplates.def(commandMessage.getMessageUser());
