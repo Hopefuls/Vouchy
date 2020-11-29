@@ -3,6 +3,8 @@ package me.hopedev.vouchy.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Properties;
 
 public class DatabaseStorage {
 
@@ -12,7 +14,7 @@ public class DatabaseStorage {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://"+hostname+":3306/"+database;
+            String url = "jdbc:mysql://"+hostname+":3306/"+database+"?autoReconnect=true";
 
             connection = DriverManager.getConnection(url, username, password);
             System.out.println(StorageUtils.parseResult(connection.createStatement().executeQuery("SELECT VERSION()"), 1));
@@ -24,6 +26,11 @@ public class DatabaseStorage {
     }
 
     public static Connection getConnection() {
+       try{
+           connection.createStatement().executeQuery("select VERSION()");
+       } catch (SQLException exception) {
+           return getConnection();
+       }
         return connection;
     }
 

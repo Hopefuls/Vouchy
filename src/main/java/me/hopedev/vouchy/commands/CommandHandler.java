@@ -69,6 +69,7 @@ public class CommandHandler implements MessageCreateListener {
 
             if (commandMessage.getArg(0).equalsIgnoreCase("about")) {
                 EmbedBuilder eb = EmbedTemplates.def();
+
                 eb.setThumbnail(Main.api.getYourself().getAvatar());
                 eb.setDescription("Vouchy - Made by HopeDev with "+ EmojiParser.parseToUnicode(":heart:"));
                 eb.setTitle("Vouchy - Role claiming done easy!");
@@ -139,6 +140,7 @@ public class CommandHandler implements MessageCreateListener {
 
                 startCooldown(commandMessage, 5, TimeUnit.SECONDS);
                 Role role = commandMessage.getMessage().getMentionedRoles().get(0);
+                commandMessage.getMessage().getMentionedChannels().get(0);
 
                 if (!commandMessage.getMessageUser().canManageRole(role)) {
                     commandMessage.getSTChannel().sendMessage(EmbedTemplates.harmlessError().setTitle("Missing Permissions").setDescription("I cannot create a voucher for a role that is higher than yours!"));
@@ -312,8 +314,15 @@ public class CommandHandler implements MessageCreateListener {
                         commandMessage.getSTChannel().sendMessage(EmbedTemplates.harmlessError().setDescription("This code does not exist."));
                         return;
                     }
+
+
                     Voucher voucher = manager.getVoucher();
-                    deleteIfPossible(message);
+                if (voucher.getServerID() != event.getServer().get().getId()) {
+                    commandMessage.getSTChannel().sendMessage(EmbedTemplates.harmlessError().setDescription("This code does not exist."));
+                    return;
+                }
+
+                deleteIfPossible(message);
                     voucher.delete();
                     commandMessage.getSTChannel().sendMessage(EmbedTemplates.harmlessError().setColor(Color.green).setDescription((voucher.isRedeemed() ? "Redeemed" : "Active")+" Voucher was successfully removed!"));
 

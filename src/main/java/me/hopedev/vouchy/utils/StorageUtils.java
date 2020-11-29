@@ -24,6 +24,9 @@ public class StorageUtils {
 
     public static ResultSet executeQuery(String query) {
         try {
+            if (DatabaseStorage.getConnection().isClosed()) {
+                DatabaseStorage.getConnection().createStatement().executeQuery("select * from voucherData;");
+            }
             Statement statement = DatabaseStorage.getConnection().createStatement();
             statement.setFetchSize(5000);
             return statement.executeQuery(query);
