@@ -31,6 +31,7 @@ dependencies {
 // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
     compile 'com.github.Hopefuls:topggwebhooks4j:1.1.0'
+    compile 'org.discordbots:DBL-Java-Library:2.0.1'
 }
 
 mainClassName= 'me.hopedev.vouchy.Main'
