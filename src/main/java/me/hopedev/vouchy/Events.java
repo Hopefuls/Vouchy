@@ -17,7 +17,7 @@ public class Events implements ServerJoinListener, ServerLeaveListener {
     public void onServerJoin(ServerJoinEvent event) {
 
         eb.setTitle("Bot was added to Server");
-        eb.setThumbnail(event.getServer().getIcon().get().getUrl().toString());
+        eb.setThumbnail(event.getServer().getIcon().orElse(Main.api.getYourself().getAvatar()));
         eb.addInlineField("Server Name", event.getServer().getName());
         eb.addInlineField("Members", String.valueOf(event.getServer().getMemberCount()));
         eb.addInlineField("Owner", event.getServer().getOwner().get().getDiscriminatedName());
