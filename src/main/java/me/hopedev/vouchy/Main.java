@@ -40,7 +40,10 @@ public class Main {
         }
 
 
-        api.getThreadPool().getScheduler().scheduleAtFixedRate(() -> botListAPI.setStats(api.getServers().size()), 0, 10, TimeUnit.MINUTES);
+        api.getThreadPool().getScheduler().scheduleAtFixedRate(() -> {
+            System.out.println("Posting servercount of "+api.getServers().size());
+            botListAPI.setStats(api.getServers().size());
+        }, 0, 10, TimeUnit.MINUTES);
         // Load CommandHandler
         api.addMessageCreateListener(new CommandHandler());
 
