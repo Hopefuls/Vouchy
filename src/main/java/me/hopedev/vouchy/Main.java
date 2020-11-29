@@ -28,7 +28,8 @@ public class Main {
                 .token(Secrets.topGGToken())
                 .botId("777993845047689226")
                 .build();
-    api = new DiscordApiBuilder().setToken(Secrets.getToken()).setAllIntentsExcept(Intent.GUILD_PRESENCES).login().join();
+    api = new DiscordApiBuilder().setToken(Secrets.getToken()).setAllIntents().login().join();
+
     System.out.println(api.createBotInvite(Permissions.fromBitmask(8)));
 
         Webhook webhook = new WebhookBuilder(new WebhookHandler()).setAuthorization(Secrets.getWebhookAuth()).setPort(5050).build();
