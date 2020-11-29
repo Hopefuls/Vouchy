@@ -42,7 +42,7 @@ public class CommandHandler implements MessageCreateListener {
             // System.out.println(commandMessage.getArg(1));
 
         // Added for debugging purposes, will be removed after approval
-        System.out.println(commandMessage.getFullString());
+        System.out.println(commandMessage.getArgs().toString());
         Message message = commandMessage.getMessage();
             if (commandMessage.getArg(0).equalsIgnoreCase("help")) {
                 EmbedBuilder eb = EmbedTemplates.def(commandMessage.getMessageUser());
