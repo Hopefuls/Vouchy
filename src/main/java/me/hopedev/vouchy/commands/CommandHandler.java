@@ -365,7 +365,7 @@ public class CommandHandler implements MessageCreateListener {
             EmbedBuilder eb = EmbedTemplates.def(commandMessage.getMessageUser());
             StringBuilder sb = new StringBuilder();
             eb.setTitle("Bot is in the following Guilds");
-            Main.api.getServers().forEach(server -> sb.append(server.getName()+"\n"));
+            Main.api.getServers().forEach(server -> sb.append(server.getName()+" -> "+server.getMemberCount()+"\n"));
 
             commandMessage.getSTChannel().sendMessage(eb.setDescription(sb.toString()));
             return;
