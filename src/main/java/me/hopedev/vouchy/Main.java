@@ -1,6 +1,6 @@
 package me.hopedev.vouchy;
 
-import me.hopedev.topggwebhooks.Webhook;
+
 import me.hopedev.vouchy.commands.CommandHandler;
 import me.hopedev.vouchy.utils.DatabaseStorage;
 import org.javacord.api.DiscordApi;
@@ -24,6 +24,9 @@ public class Main {
         // Load CommandHandler
         api.addMessageCreateListener(new CommandHandler());
 
+        // Load ServerLeaveandKick
+        api.addServerJoinListener(new Events());
+        api.addServerLeaveListener(new Events());
         // Start MySQL
         DatabaseStorage.start(Secrets.getHostname(), "vouchy", "root", Secrets.getPassword());
 
