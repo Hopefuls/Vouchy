@@ -100,7 +100,7 @@ public class CommandHandler implements MessageCreateListener {
                     return;
                 }
 
-                startCooldown(commandMessage, 5, TimeUnit.SECONDS);
+                startCooldown(commandMessage, 3, TimeUnit.SECONDS);
 
                 VoucherManager manager = new VoucherManager(commandMessage.getArg(1), commandMessage);
 
@@ -142,7 +142,7 @@ public class CommandHandler implements MessageCreateListener {
                     return;
                 }
 
-                startCooldown(commandMessage, 5, TimeUnit.SECONDS);
+                startCooldown(commandMessage, 3, TimeUnit.SECONDS);
                 Role role = commandMessage.getMessage().getMentionedRoles().get(0);
 
 
@@ -157,6 +157,11 @@ public class CommandHandler implements MessageCreateListener {
                 String createdKey = VoucherManager.createKey(serverID, userID, roleID, commandMessage);
 
                 EmbedBuilder embedBuilder = EmbedTemplates.def(commandMessage.getMessageUser());
+                StringBuilder sb = new StringBuilder();
+                sb.append("This message expires after 15 seconds.");
+                if (!Main.api.getYourself().canManageRole(role)) {
+                    sb.append("\n\n*Note: I won't be able to give a user that role when trying to claim it.*\n*Make sure that the role is not higher/equal that i am noot missing __Manage Roles__ Permissions*");
+                }
                 embedBuilder.setDescription("This message expires after 15 seconds.");
                 embedBuilder.setTitle("Role Key created!");
                 embedBuilder.addField("Key", "||``" + createdKey + "``||");
@@ -179,7 +184,7 @@ public class CommandHandler implements MessageCreateListener {
                     return;
                 }
 
-                startCooldown(commandMessage, 5, TimeUnit.SECONDS);
+                startCooldown(commandMessage, 3, TimeUnit.SECONDS);
 
                 String serverid = commandMessage.getEvent().getServer().get().getIdAsString();
                 ResultSet set = StorageUtils.executeQuery("select * from voucherData where serverID = "+serverid);
@@ -239,7 +244,7 @@ public class CommandHandler implements MessageCreateListener {
                     return;
                 }
 
-                startCooldown(commandMessage, 5, TimeUnit.SECONDS);
+                startCooldown(commandMessage, 3, TimeUnit.SECONDS);
                 VoucherManager manager = new VoucherManager(commandMessage.getArg(1), commandMessage);
 
                 if (!manager.isValid()) {
@@ -310,7 +315,7 @@ public class CommandHandler implements MessageCreateListener {
                     return;
                 }
 
-                startCooldown(commandMessage, 5, TimeUnit.SECONDS);
+                startCooldown(commandMessage, 3, TimeUnit.SECONDS);
 
                 VoucherManager manager = new VoucherManager(commandMessage.getArg(1), commandMessage);
 
@@ -343,7 +348,7 @@ public class CommandHandler implements MessageCreateListener {
                 return;
             }
 
-            startCooldown(commandMessage, 5, TimeUnit.SECONDS);
+            startCooldown(commandMessage, 3, TimeUnit.SECONDS);
             new ApartedManager(commandMessage).deleteAll();
             commandMessage.getSTChannel().sendMessage(EmbedTemplates.harmlessError().setColor(Color.green).setDescription("All Keys cleared!"));
 
