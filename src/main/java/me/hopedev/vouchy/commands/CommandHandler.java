@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +43,7 @@ public class CommandHandler implements MessageCreateListener {
             // System.out.println(commandMessage.getArg(1));
 
         // Added for debugging purposes, will be removed after approval
-        System.out.println(commandMessage.getArgs().toString());
+        System.out.println(Arrays.toString(commandMessage.getArgs()));
         Message message = commandMessage.getMessage();
             if (commandMessage.getArg(0).equalsIgnoreCase("help")) {
                 EmbedBuilder eb = EmbedTemplates.def(commandMessage.getMessageUser());
