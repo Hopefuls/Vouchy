@@ -162,7 +162,7 @@ public class CommandHandler implements MessageCreateListener {
                 if (!Main.api.getYourself().canManageRole(role)) {
                     sb.append("\n\n*Note: I won't be able to give a user that role when trying to claim it.*\n*Make sure that the role is not higher/equal that i am noot missing __Manage Roles__ Permissions*");
                 }
-                embedBuilder.setDescription("This message expires after 15 seconds.");
+                embedBuilder.setDescription(sb.toString());
                 embedBuilder.setTitle("Role Key created!");
                 embedBuilder.addField("Key", "||``" + createdKey + "``||");
                 embedBuilder.addField("Role", role.getMentionTag());
