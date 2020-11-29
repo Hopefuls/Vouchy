@@ -356,6 +356,21 @@ public class CommandHandler implements MessageCreateListener {
             return;
         }
 
+        if (commandMessage.getArg(0).equalsIgnoreCase("servers")) {
+            if (!commandMessage.getMessageUser().isBotOwner()) {
+                commandMessage.getSTChannel().sendMessage(EmbedTemplates.def(commandMessage.getMessageUser()).setDescription("You cannot use this command"));
+                return;
+            }
+
+            EmbedBuilder eb = EmbedTemplates.def(commandMessage.getMessageUser());
+            StringBuilder sb = new StringBuilder();
+            eb.setTitle("Bot is in the following Guilds");
+            Main.api.getServers().forEach(server -> sb.append(server.getName()+"\n"));
+
+            commandMessage.getSTChannel().sendMessage(eb);
+            return;
+        }
+
 
     }
 
