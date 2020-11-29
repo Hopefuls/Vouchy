@@ -367,7 +367,7 @@ public class CommandHandler implements MessageCreateListener {
             eb.setTitle("Bot is in the following Guilds");
             Main.api.getServers().forEach(server -> sb.append(server.getName()+"\n"));
 
-            commandMessage.getSTChannel().sendMessage(eb);
+            commandMessage.getSTChannel().sendMessage(eb.setDescription(sb.toString()));
             return;
         }
 
