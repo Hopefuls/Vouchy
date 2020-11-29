@@ -9,6 +9,7 @@ import me.hopedev.vouchy.utils.WebhookHandler;
 import org.discordbots.api.client.DiscordBotListAPI;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.intent.Intent;
 import org.javacord.api.entity.permission.Permissions;
 import org.javacord.api.entity.user.User;
@@ -43,6 +44,7 @@ public class Main {
         api.getThreadPool().getScheduler().scheduleAtFixedRate(() -> {
             System.out.println("Posting servercount of "+api.getServers().size());
             botListAPI.setStats(api.getServers().size());
+            Main.api.updateActivity(ActivityType.WATCHING, "for voucher codes on "+api.getServers().size()+" guilds | vy> about");
         }, 0, 10, TimeUnit.MINUTES);
         // Load CommandHandler
         api.addMessageCreateListener(new CommandHandler());
