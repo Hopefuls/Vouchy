@@ -24,8 +24,10 @@ public class CommandMessage {
         this.callerCMD = cmdlist.get(0); // define callercmd
         cmdlist.remove(0); // then remove
         this.args = cmdlist.toArray(new String[0]); // and convert back to commandlist
+        if (event.getMessageAuthor().asUser().isPresent())
         this.user = event.getMessageAuthor().asUser().get(); // define messageauthor
-
+        else
+            this.user = null;
     }
 
     public final String getCallerCMD() {
