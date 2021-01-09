@@ -89,3 +89,6 @@ Deleting a voucher code
 
 
 ***__THANKS FOR USING VOUCHY__***
+***Project-Informations***
+- Uses MySQL to store data
+- Coded in Java
